@@ -56,7 +56,7 @@ class Matrix(object):
         if self.h > 2:
             raise(NotImplementedError, "Calculating determinant not implemented for matrices largerer than 2x2.")
         
-        # TODO - your code here
+        # DONE - your code here
         if self.h == 1:
             det_sum = self.g[0][0]
         else:
@@ -70,7 +70,12 @@ class Matrix(object):
         if not self.is_square():
             raise(ValueError, "Cannot calculate the trace of a non-square matrix.")
 
-        # TODO - your code here
+        # DONE - your code here
+        trace_sum = 0
+        for i in range(self.h):
+            trace_sum += self.g[i][i]
+        return trace_sum
+
 
     def inverse(self):
         """
@@ -81,7 +86,20 @@ class Matrix(object):
         if self.h > 2:
             raise(NotImplementedError, "inversion not implemented for matrices larger than 2x2.")
 
-        # TODO - your code here
+        # DONE - your code here
+        # For a 1 x 1 matrix:
+        if self.h == 1:
+            inv_matrix = [[ 1 / self.g[0][0] ]]
+        else:
+            # For a 2 x 2 matrix:
+            if self.g[0][0] * self.g[1][1] == self.g[1][0] * self.g[0][1]:
+                raise(ValueError, "This Matrix does not have an inverse.")
+            else:
+                inv_det = 1 / self.determinant()
+                inv_matrix = [[inv_det * self.g[1][1], inv_det * -1 * self.g[0][1]],
+                              [inv_det * -1 * self.g[1][0], inv_det * self.g[0][0]]]
+        return inv_matrix
+
 
     def T(self):
         """
