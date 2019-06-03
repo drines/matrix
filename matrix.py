@@ -3,8 +3,8 @@
 #
 # PROGRAMMER:       Daniel Rines
 # DATE CREATED:     2019.05.28
-# REVISED DATE:     2019.05.31
-# PURPOSE:  Defines a class for the ISDC's car object.
+# REVISED DATE:     2019.06.03
+# PURPOSE:  Defines a class and methods for supporting Kalman Filters.
 #
 # NOTES:    TBD
 #
@@ -105,7 +105,19 @@ class Matrix(object):
         """
         Returns a transposed copy of this Matrix.
         """
-        # TODO - your code here
+        # DONE - your code here
+        matrix_transpose = []
+        # Loop through columns on outside loop
+        for c in range(self.w):
+            new_row = []
+            # Loop through columns on inner loop
+            for r in range(self.h):
+                # Column values will be filled by what were each row before
+                new_row.append(self.g[r][c])
+            matrix_transpose.append(new_row)    
+        
+        return matrix_transpose
+
 
     def is_square(self):
         return self.h == self.w
