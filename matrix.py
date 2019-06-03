@@ -158,8 +158,19 @@ class Matrix(object):
         if self.h != other.h or self.w != other.w:
             raise(ValueError, "Matrices can only be added if the dimensions are the same") 
         #   
-        # TODO - your code here
+        # DONE - your code here
         #
+        summed_matrix = []
+        # loop through each row
+        for r in range(self.h):
+            # initialize a temporary list holder
+            summed_row = []
+            # loop through each column
+            for c in range(self.w):
+                summed_row.append(self.g[r][c] + other[r][c])
+            summed_matrix.append(summed_row)
+        return summed_matrix
+
 
     def __neg__(self):
         """
